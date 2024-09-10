@@ -1,24 +1,27 @@
-<template>
-    <SlideComponent></SlideComponent>
-    <AboutComponent></AboutComponent>
-    <ContactComponent></ContactComponent>
-  </template>
+ <template>
+    <div>
+      <SlideComponent></SlideComponent>
+      <AboutComponent></AboutComponent>
+      <ContactComponent></ContactComponent>
+    </div>
+</template>
   
-  <script>
+<script>
   import SlideComponent from './SlideComponent.vue';
   import AboutComponent from './AboutComponent.vue';
   import ContactComponent from './ContactComponent.vue';
-
+  import { store } from '../js/store';
+  
   export default {
     name: 'Home',
     components: {
       SlideComponent,
       AboutComponent,
-      ContactComponent
+      ContactComponent,
     }
   };
-  </script>
+</script>
   
-  <style>
-  </style>
+<style>
+</style>
   

@@ -1,10 +1,12 @@
 <template>
   <div class="wave">
     <HeaderComponent></HeaderComponent>
+    
     <div class="slider-container d-flex flex-column">
-      <div class="slider-box">
-        <div class="slider-wrapper" :style="wrapperStyle">
-          <div v-for="(slide, index) in store.slides" :key="slide.id" class="card">
+      <div class="slider-box" @mouseover="stopSlideShow" 
+        @mouseout="startSlideShow">
+        <div class="slider-wrapper" :style="wrapperStyle" >
+          <div v-for="(slide) in store.slides" :key="slide.id" class="card">
             <div class="card-content d-flex mt-4 mb-3">
               <div class="card-image">
                 <img :src="slide.image" alt="Image for {{ slide.nameTable }}">
@@ -34,61 +36,79 @@
       <div class="counter">
         <button @click="prevSlide" class="slider-button prev-button">&#10094;</button>
         <button @click="nextSlide" class="slider-button next-button">&#10095;</button>
-        <p class="bg-dark text-center text-white py-1">{{ currentIndex + 1 }}/{{ store.slides.length}}</p>
+        <p class="bg-dark text-center text-white py-1">{{ currentIndex + 1 }}/{{ store.slides.length }}</p>
       </div>
-    </div>  
+    </div>
   </div>
 </template>
 
 <script>
-  import { ref, computed, onMounted } from 'vue';
-  import { store } from '../js/store';
-  import HeaderComponent from './partials/HeaderComponent.vue';
+import { ref, computed, onMounted } from 'vue';
+import { store } from '../js/store';
+import HeaderComponent from './partials/HeaderComponent.vue';
 
-  export default {
-    name: 'SlideComponent',
-    components: {
-      HeaderComponent,
-    },
-    setup() {
-      const currentIndex = ref(0); // Inizializza con 0
-      const activeTab = ref('description');
+export default {
+  name: 'SlideComponent',
+  components: {
+    HeaderComponent,
+  },
+  setup() {
+    const currentIndex = ref(0); 
+    const activeTab = ref('description');
+    let slideInterval = null;
 
-      const goToSlide = (index) => {
-        if (index < 0) {
-          currentIndex.value = 0;
-        } else if (index >= store.slides.length) {
-          currentIndex.value = store.slides.length - 1; // Vai all'ultima slide
-        } else {
-          currentIndex.value = index;
-        }
-      };
+    const goToSlide = (index) => {
+      if (index < 0) {
+        currentIndex.value = 0;
+      } else if (index >= store.slides.length) {
+        currentIndex.value = 0;
+      } else {
+        currentIndex.value = index;
+      }
+    };
 
-      const nextSlide = () => goToSlide(currentIndex.value + 1);
-      const prevSlide = () => goToSlide(currentIndex.value - 1);
+    const nextSlide = () => goToSlide(currentIndex.value + 1);
+    const prevSlide = () => goToSlide(currentIndex.value - 1);
+    
+    const startSlideShow = () => {
+      slideInterval = setInterval(() => {
+        nextSlide();
+      }, 8000); // 
+    };
 
-      const wrapperStyle = computed(() => ({
-        transform: `translateX(-${currentIndex.value * 800}px)`,
-        transition: 'transform 0.5s ease',
-      }));
+     const stopSlideShow = () => {
+      if (slideInterval) {
+        clearInterval(slideInterval);  
+        slideInterval = null;  
+      }
+    };
 
-      const isActiveTab = (tab) => activeTab.value === tab;
+    const wrapperStyle = computed(() => ({
+      transform: `translateX(-${currentIndex.value * 100}%)`,  
+      transition: 'transform 0.5s ease',
+    }));
 
-      onMounted(() => {
-        store.fetchSlides(); // Assicura che le slide siano caricate
-      });
-
-      return {
-        store,
-        currentIndex, // Ritorna currentIndex per essere usato nel template
-        activeTab,
-        wrapperStyle,
-        nextSlide,
-        prevSlide,
-        isActiveTab,
-      };
-    },
-  };
+    const isActiveTab = (tab) => activeTab.value === tab;
+ 
+    onMounted(() => {
+      if (!store.slidesLoaded) {
+        store.fetchSlides();
+      } startSlideShow(); 
+    });
+ 
+    return {
+      store,
+      currentIndex,  
+      activeTab,
+      wrapperStyle,
+      nextSlide,
+      prevSlide,
+      startSlideShow,  
+      stopSlideShow,
+      isActiveTab,
+    };
+  },
+};
 </script>
 
 
@@ -100,9 +120,9 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
- 
   height: 500px;
   margin-bottom: 250px;
+  position: relative;  
 }
 
 .slider-container {
@@ -116,6 +136,7 @@
 .slider-wrapper {
   display: flex;
   width: 100%;
+  transition: transform 0.5s ease; 
 }
 
 .card {
@@ -123,20 +144,17 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-
-  flex: 0 0 800px;
+  flex: 0 0 100%; 
   padding: 20px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-
   border-radius: 0;
 }
 
 .card-content {
   display: flex;
   width: 100%;
-  z-index: 1;
 }
 
 .card-image img {
@@ -145,7 +163,6 @@
 }
 
 .card-details {
-  z-index: 2;
   padding-left: 20px;
 }
 
@@ -167,7 +184,7 @@
   font-weight: bolder;
 }
 
-.counter{
+.counter {
   position: absolute;
   top: 8%;
   right: 0;
@@ -191,15 +208,93 @@
   color: white;
 }
 
-.card-footer button{
+.card-footer button {
   border-radius: 0;
-  border:0px;
+  border: 0px;
   text-transform: uppercase;
   width: 150px;
   background-color: $blue-light;
 }
 
-a{
+a {
   color: $blue-light;
 }
+
+/* Tablet Landscape and Below */
+@media (max-width: 1024px) {
+  .wave {
+    height: 800px;
+  }
+  
+  .slider-container {
+    max-width: 100%;  
+  }
+ 
+  .card {
+    flex: 0 0 calc(800px - 40px); ; 
+    min-height: 400px;
+    margin: 0 20px;
+  }
+
+  .counter{
+    margin-right:20px
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .wave {
+    height: 1000px;
+  }
+  
+  .slider-container {
+    padding: 0 5px;
+    max-height: 1000px;
+  }
+  
+  .card {
+    flex: 0 0 100%;
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    min-height: 400px;
+  }
+  
+  .card-content {
+    flex-direction: column;
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .card-details {
+    padding-left: 0;
+    text-align: center;
+  }
+  
+  .card-nav button {
+    padding: 3px 6px;
+    margin-right: 5px;
+    font-size: 14px;
+  }
+  
+  .card-footer {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card-footer button {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .counter {
+    top: 10%;
+    right: 5px;
+  }
+}
 </style>
+
+

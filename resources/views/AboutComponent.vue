@@ -24,13 +24,14 @@
     
     </div>
   </div>
-  </template>
+ 
+</template>
   
-  <script>
+<script>
   export default {
     name: 'AboutComponent',
   };
-  </script>
+</script>
   
 <style lang="scss" scoped>
 @use '../scss/style/variables' as *;
@@ -108,5 +109,64 @@ a{
 
 }
 
+
+/* Tablet Landscape and Below */
+@media (max-width: 1024px) {
+ 
+  .text-about{
+  position: relative;
+  bottom: -25px;
+  z-index: -1;
+ 
+  }
+
+  .about {
+    padding: 20px 10px;
+  }
+
+  .box {
+    display: block;
+    text-align: center;
+  }
+
+  .left {
+    width: 100%;
+    height:250px;
+    padding: 20px;
+
+  }
+
+  .right{
+    margin-top:50px 
+  }
+
+  .video-container {
+    max-width: 90%;
+    margin-top:80px
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .about-us {
+    height: 80px;
+
+  }
+
+  .about-us h1 {
+    font-size: 10vw;
+  }
+
+  .left {
+    margin-top:50px;
+ 
+  }
+ 
+
+  .right {
+    display: none; 
+  }
+ 
+}
 </style>
   

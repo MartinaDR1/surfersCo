@@ -1,5 +1,6 @@
+<!--
 <template>
-    <div class="container">
+    <div class="container-fluid">
         <div class="header d-flex align-items-center justify-content-between p-3">
             <div class="logo">
                 <h1>Surfers Co.</h1>
@@ -22,15 +23,52 @@
             <h3>Ride every wave as if it's your last</h3>
             <p class="text-white">We love the motion of the ocean</p>
         </div>
+        
+    </div>
+</template>
+-->
+
+<template>
+    <nav class="navbar navbar-expand-lg p-3">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <div class="logo  ">
+                <h1>Surfers Co.</h1>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center w-100">
+                    <li v-for="(item, index) in items" :key="index" class="menu-item ">
+                        <a class="nav-link fw-semibold" href="#">{{ item }}</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex">
+                    <a v-for="(social, index) in socialLinks" :key="index" :href="social.url" target="_blank" class="social-item text-decoration-none text-white">
+                        <i :class="social.iconClass" class="mx-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="text text-center">
+        <h3>Ride every wave as if it's your last</h3>
+        <p class="text-white">We love the motion of the ocean</p>
     </div>
 </template>
 
+
 <script>
-export default{
-    name:'HeaderComponent',
-    data(){
-        return{
-            isMenuOpen: false,
+export default {
+    name: 'HeaderComponent',
+    data() {
+        return {
             items: [
                 'Boards',
                 'Accessories',
@@ -54,11 +92,6 @@ export default{
                 }
             ]
         }
-    },
-    methods: {
-        toggleMenu() {
-            this.isMenuOpen = !this.isMenuOpen;
-        }
     }
 }
 </script>
@@ -68,13 +101,13 @@ export default{
  
 .menu-item {
     text-transform: uppercase;
-    cursor: pointer; 
     padding: 5px 10px;
+    a:hover {
+        background-color: $blue-light;
+        color:white;
+    }
 }
-.menu-item:hover {
-    background-color: $blue-light;
-    color:white;
-}
+
 
 .social-item {
     background-color: $dark;
@@ -88,23 +121,11 @@ export default{
     cursor: pointer;
 }
  
-a{
-    color:white
-}
 
 .text {
     margin: 80px 0 80px 0;
 }
 
-@media (max-width: 768px) {
-    .menu-toggle{
-        display: contents;
-    }
-}
 
-@media (max-width: 480px) {
-    /* Stili per smartphone */
-}
-
- 
 </style>
+

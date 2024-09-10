@@ -79,7 +79,6 @@
 
 .social, .email {
   flex: 1;
-  margin: 0 10px;
   z-index: 1;
 }
 
@@ -116,7 +115,40 @@
 .footer-page{
   position: relative;
 }
+ /* Tablet Landscape and Below */
+@media (max-width: 1024px) {
+  .contacts{
+    margin-bottom:100px
+  }
+  
+  .text-instagram {
+    position: relative;
+    bottom: -30px;
+    z-index: -1;
+  }
+
+  .instagram h1 {
+    font-size: 6vw; 
+  }
+
+  .social {
+    width: 100%;
+    margin-bottom: 10px; 
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr); /* Mantieni la griglia a 2 colonne */
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+
+  .social,.instagram  {
+    display:none
+  }
  
+}
 </style>
 
   
