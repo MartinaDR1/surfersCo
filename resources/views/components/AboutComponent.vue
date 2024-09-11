@@ -8,7 +8,7 @@
     <div class="box d-flex">
       <div class="left">
         <h5 class="text-uppercase text-center">We are surfers co. <br>x</h5>
-        <p class="fst-italic py-5" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fusce iaculis feugiat arcunum fermentum hendrerit. Suspendisse auctor labor nisi, et interdum iam facilisis, aliquam pulvinar semi egetis belle sollicitudin ut. Nullam tincidun finibustus scelerisque.</p>
+        <p class="fst-italic py-5" >Lorem ipsum dolor sit amet, aeneam consectetur adipiscing elit. Fusce iaculis feugiat arcunum fermentum hendrerit. Suspendisse auctor labor nisi, et interdum iam facilisis, aliquam pulvinar semi egetis belle sollicitudin ut. Nullam tincidun finibustus scelerisque.</p>
         <a href="#"class="fw-semibold pt-4">Read me</a>
       </div>
       <div class="right">
@@ -34,7 +34,7 @@
 </script>
   
 <style lang="scss" scoped>
-@use '../scss/style/variables' as *;
+@use '../../scss/style/variables' as *;
 
 .about {
   background-image: url(/surfista.jpeg);
@@ -91,7 +91,8 @@ a{
   height: 500px;
   position: absolute;
   top: 250px;
-  padding: 120px;
+  padding: 100px 150px;
+  line-height: 2;  
 }
 
 .right {
@@ -99,6 +100,7 @@ a{
   right: 90px;
   top: 400px;
 }
+
 .video-container{
   width: 500px;
   height: 250px;
@@ -109,8 +111,17 @@ a{
 
 }
 
+/*Fonts*/
+.left{
+  font-family: 'montserrat', sans-serif;
 
-/* Tablet Landscape and Below */
+  p{
+    font-family: 'Playfair Display', sans-serif;
+  }
+
+}
+
+/* Tablet */
 @media (max-width: 1024px) {
  
   .text-about{
@@ -146,7 +157,7 @@ a{
   }
 }
 
-/* Mobile Devices */
+/* Mobile */
 @media (max-width: 768px) {
   .about-us {
     height: 80px;

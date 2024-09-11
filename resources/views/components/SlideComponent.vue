@@ -1,7 +1,7 @@
 <template>
   <div class="wave">
     <HeaderComponent></HeaderComponent>
-    
+
     <div class="slider-container d-flex flex-column">
       <div class="slider-box" @mouseover="stopSlideShow" 
         @mouseout="startSlideShow">
@@ -39,12 +39,13 @@
         <p class="bg-dark text-center text-white py-1">{{ currentIndex + 1 }}/{{ store.slides.length }}</p>
       </div>
     </div>
+    
   </div>
 </template>
 
 <script>
 import { ref, computed, onMounted } from 'vue';
-import { store } from '../js/store';
+import { store } from '../../js/store';
 import HeaderComponent from './partials/HeaderComponent.vue';
 
 export default {
@@ -73,7 +74,7 @@ export default {
     const startSlideShow = () => {
       slideInterval = setInterval(() => {
         nextSlide();
-      }, 8000); // 
+      }, 8000); 
     };
 
      const stopSlideShow = () => {
@@ -113,7 +114,7 @@ export default {
 
 
 <style lang="scss" scoped>
-@use '../scss/style/variables' as *;
+@use '../../scss/style/variables' as *;
 
 .wave {
   background-image: url('/onde.jpeg');
@@ -130,13 +131,13 @@ export default {
   width: 100%;
   max-width: 800px;
   margin: auto;
-  overflow: hidden;
+  overflow: hidden; 
 }
 
 .slider-wrapper {
   display: flex;
   width: 100%;
-  transition: transform 0.5s ease; 
+  transition: transform 0.5s ease;
 }
 
 .card {
@@ -157,13 +158,20 @@ export default {
   width: 100%;
 }
 
+.card-image {
+  flex: 0 0 300px; 
+  overflow: hidden;
+}
+
 .card-image img {
   width: 100%;
-  height: auto;
+  height: auto; 
+  object-fit: cover; 
 }
 
 .card-details {
   padding-left: 20px;
+  flex: 1; 
 }
 
 .card-nav button {
@@ -178,10 +186,15 @@ export default {
   transition: border-color 0.3s, color 0.3s;
 }
 
+.card-body p {
+  padding-top:10px;
+}
+
 .card-nav button.active {
   border-bottom: 2px solid $blue-light;
   color: $dark;
   font-weight: bolder;
+
 }
 
 .counter {
@@ -208,9 +221,17 @@ export default {
   color: white;
 }
 
+.card-footer {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  background-color: white;
+  border: 0;
+}
+
 .card-footer button {
   border-radius: 0;
-  border: 0px;
+  border: 0;
   text-transform: uppercase;
   width: 150px;
   background-color: $blue-light;
@@ -220,28 +241,39 @@ a {
   color: $blue-light;
 }
 
-/* Tablet Landscape and Below */
+
+/*Fonts*/
+
+*{
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 600;
+}
+.card-body p {
+ 
+  font-weight: 200;
+}
+
+/* Tablet */
 @media (max-width: 1024px) {
   .wave {
     height: 800px;
   }
   
   .slider-container {
-    max-width: 100%;  
+    max-width: 100%;
   }
  
   .card {
-    flex: 0 0 calc(800px - 40px); ; 
-    min-height: 400px;
+    flex: 0 0 calc(100% - 40px); 
     margin: 0 20px;
   }
 
-  .counter{
-    margin-right:20px
+  .counter {
+    margin-right: 20px;
   }
 }
 
-/* Mobile Devices */
+/* Mobile */
 @media (max-width: 768px) {
   .wave {
     height: 1000px;
@@ -249,12 +281,16 @@ a {
   
   .slider-container {
     padding: 0 5px;
-    max-height: 1000px;
+    max-height: 700px;
+    overflow: hidden;
+  }
+  
+  .slider-wrapper {
+    width: 100%;
   }
   
   .card {
-    flex: 0 0 100%;
-    padding: 10px;
+ 
     flex-direction: column;
     align-items: center;
     min-height: 400px;
@@ -262,11 +298,12 @@ a {
   
   .card-content {
     flex-direction: column;
+    width: 100%;
   }
   
-  .card-image img {
-    width: 100%;
-    height: auto;
+  .card-image {
+    width: 100%; 
+    height: auto; 
   }
   
   .card-details {
@@ -296,5 +333,7 @@ a {
   }
 }
 </style>
+
+
 
 

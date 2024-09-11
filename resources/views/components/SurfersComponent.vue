@@ -1,5 +1,5 @@
  <template>
-    <div>
+    <div >
       <SlideComponent></SlideComponent>
       <AboutComponent></AboutComponent>
       <ContactComponent></ContactComponent>
@@ -10,8 +10,7 @@
   import SlideComponent from './SlideComponent.vue';
   import AboutComponent from './AboutComponent.vue';
   import ContactComponent from './ContactComponent.vue';
-  import { store } from '../js/store';
-  
+
   export default {
     name: 'Home',
     components: {

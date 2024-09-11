@@ -33,7 +33,7 @@
 </template>
   
 <script>
-  import EmailComponent from './EmailComponent.vue';
+  import EmailComponent from './partials/EmailComponent.vue';
   import FooterComponent from './partials/FooterComponent.vue';
 
   export default {
@@ -56,7 +56,7 @@
 </script>
   
 <style lang="scss" scoped>
-@use '../scss/style/variables' as *;
+@use '../../scss/style/variables' as *;
 
 .instagram {
   width: 50%;
@@ -115,7 +115,8 @@
 .footer-page{
   position: relative;
 }
- /* Tablet Landscape and Below */
+
+ /* Tablet */
 @media (max-width: 1024px) {
   .contacts{
     margin-bottom:100px
@@ -137,11 +138,11 @@
   }
 
   .photo-grid {
-    grid-template-columns: repeat(2, 1fr); /* Mantieni la griglia a 2 colonne */
+    grid-template-columns: repeat(2, 1fr); 
   }
 }
 
-/* Mobile Devices */
+/* Mobile*/
 @media (max-width: 768px) {
 
   .social,.instagram  {

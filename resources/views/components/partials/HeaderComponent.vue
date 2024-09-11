@@ -1,38 +1,8 @@
-<!--
-<template>
-    <div class="container-fluid">
-        <div class="header d-flex align-items-center justify-content-between p-3">
-            <div class="logo">
-                <h1>Surfers Co.</h1>
-            </div>
-            <div class="menu d-flex fw-semibold">
-                <button class="menu-toggle d-flex d-lg-none" @click="toggleMenu">
-                    <i class="fa-solid fa-bars"></i> 
-                </button>
-                <div v-for="(item, index) in items" :key="index" class="menu-item mx-2"  :class="{ 'menu-open': isMenuOpen }">
-                    {{ item }}
-                </div>
-            </div>
-            <div class="social d-flex text-white">
-                <a v-for="(social, index) in socialLinks" :key="index" :href="social.url" target="_blank" class="social-item text-decoration-none ">
-                    <i :class="social.iconClass" class="mx-2"></i>
-                </a>
-            </div>
-        </div>
-        <div class="text text-center">
-            <h3>Ride every wave as if it's your last</h3>
-            <p class="text-white">We love the motion of the ocean</p>
-        </div>
-        
-    </div>
-</template>
--->
-
 <template>
     <nav class="navbar navbar-expand-lg p-3">
         <div class="container d-flex align-items-center justify-content-between">
 
-            <div class="logo  ">
+            <div class="logo">
                 <h1>Surfers Co.</h1>
             </div>
 
@@ -97,8 +67,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use '../../scss/style/variables' as *;
- 
+@use '../../../scss/style/variables' as *;
+
 .menu-item {
     text-transform: uppercase;
     padding: 5px 10px;
@@ -121,11 +91,25 @@ export default {
     cursor: pointer;
 }
  
+/*Fonts*/
 
-.text {
-    margin: 80px 0 80px 0;
+.logo {
+    font-family: 'Roboto Condensed', sans-serif;
+    h1{
+        font-weight: 600; 
+    }
 }
 
+.text {
+    margin: 80px 0;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: large;
+    h3{
+        font-size: 50px;
+        font-weight: 200;
+    }
+}
 
 </style>
 
