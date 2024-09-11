@@ -119,12 +119,13 @@
  /* Tablet */
 @media (max-width: 1024px) {
   .contacts{
-    margin-bottom:100px
+    margin-bottom:100px;
+    padding-top:50px;
   }
   
   .text-instagram {
     position: relative;
-    bottom: -30px;
+    bottom: -80px;
     z-index: -1;
   }
 

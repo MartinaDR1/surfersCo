@@ -128,7 +128,6 @@ a{
   position: relative;
   bottom: -25px;
   z-index: -1;
- 
   }
 
   .about {
@@ -144,11 +143,10 @@ a{
     width: 100%;
     height:250px;
     padding: 20px;
-
   }
 
   .right{
-    margin-top:50px 
+    margin-top:70px 
   }
 
   .video-container {

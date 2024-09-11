@@ -12,7 +12,7 @@
                 <img :src="slide.image" alt="Image for {{ slide.nameTable }}">
               </div>
               <div class="card-details d-flex flex-column">
-                <h3>{{ slide.nameTable }}</h3>
+                <h3 class="p-3">{{ slide.nameTable }}</h3>
                 <div class="card-body">
                   <div class="card-nav d-flex mt-3">
                     <button :class="{ active: isActiveTab('description') }" @click="activeTab = 'description'">Description</button>
@@ -248,8 +248,8 @@ a {
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: 600;
 }
+
 .card-body p {
- 
   font-weight: 200;
 }
 
@@ -281,7 +281,7 @@ a {
   
   .slider-container {
     padding: 0 5px;
-    max-height: 700px;
+    max-height: 850px;
     overflow: hidden;
   }
   
